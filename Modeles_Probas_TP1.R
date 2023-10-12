@@ -1,12 +1,12 @@
-## Modèles Probas
+## ModÃ¨les Probas
 ## 16/09
 # TP 1
 
 # changer le working directory
-# setwd("U:/Mes documents/M2/Modèles Probas")
+# setwd("U:/Mes documents/M2/ModÃ¨les Probas")
 
 
-data=read.csv("U:/Mes documents/M2/Modèles Probas/donnees.csv")
+data=read.csv("U:/Mes documents/M2/ModÃ¨les Probas/donnees.csv")
 
 hist(data$X..defaillances)
 summary(data)
@@ -15,21 +15,21 @@ boxplot(data)
 defaillances=data$X..defaillances.
 defaillances
 
-# On remarque qu'il y a 48 valeurs égales à 2555
+# On remarque qu'il y a 48 valeurs Ã©gales Ã  2555
 sum(defaillances==2555)
 
-# On hist seulement les valeurs inférieures à 2555
+# On hist seulement les valeurs infÃ©rieures Ã  2555
 hist(defaillances[defaillances<2555],breaks=10)
 
 
-# Estimation du max de vraisemblance pour un ech de loi Weibull censuré
+# Estimation du max de vraisemblance pour un ech de loi Weibull censurÃ©
 
-# ImplémentationS
+# ImplÃ©mentationS
 beta = 1.5
 eta = 100
 n = 50
 c = 40
-ech = rweibull(n,beta, eta)  # génère
+ech = rweibull(n,beta, eta)  # gÃ©nÃ¨re
 ech[ech>c]=c                 # fixe plafond
 m=sum(ech<c)
 ech
@@ -38,14 +38,14 @@ equa = function(beta){
   (1/beta)-sum(log(ech)*(ech^beta))/(sum((ech^beta)))+(1/m)*sum(log(ech[ech<c]))
   }
 
-# uniroot résout l'équation
+# uniroot rÃ©sout l'Ã©quation
 betaE1 = uniroot(equa,c(0,5))$root
 betaE1
 etaE1 = ((1/m)*sum(ech**betaE1))**(1/betaE1)
 etaE1
 
 
-#On refait pareil avec nos données d'aspirateur
+#On refait pareil avec nos donnÃ©es d'aspirateur
 c = 2555
 n = length(defaillances)
 m = sum(defaillances<c)
@@ -61,8 +61,8 @@ etaE2 = ((1/m)*sum(ech**betaE2))**(1/betaE2)
 list(betaE1, betaE2, etaE1, etaE2)
 
 # On fait notre boucle
-beta = 0.5    #Paramètre de forme
-eta = 100     #Paramètre d'échelle
+beta = 0.5    #ParamÃ¨tre de forme
+eta = 100     #ParamÃ¨tre d'Ã©chelle
 
 n = 25        #Nombre d'observation
 c = 40        #censure
@@ -74,7 +74,7 @@ BETA[1] = beta
 ETA = rep(0,N)
 ETA[1] = eta
 
-ech = rweibull(n,beta, eta)  # génère
+ech = rweibull(n,beta, eta)  # gÃ©nÃ¨re
 ech[ech>c]=c                 # fixe plafond
 m=sum(ech<c)
 
@@ -106,11 +106,11 @@ M = rep(0,50)
 for(i in 1:50){
   Ech = rweibull(n, beta, eta)
   m = sum(Ech < c)
-  M[i] = m                                #Nombre de défaillance
+  M[i] = m                                #Nombre de dÃ©faillance
 }
-mean(M)                                #Nombre moyen de défaillance
+mean(M)                                #Nombre moyen de dÃ©faillance
 m = sum(Ech < c)
-m # le nombre de défaillances???
+m # le nombre de dÃ©faillances???
 
 
 
@@ -130,13 +130,13 @@ equa = function(beta){
 for(i in 1:50){
   Ech = rweibull(n, beta, eta)
   m = sum(Ech < c)
-  M[i] = m                                #Nombre de défaillance
+  M[i] = m                                #Nombre de dÃ©faillance
   betamv = uniroot(equa,c(0.01,10))$root
   etamv = ((1/m)*sum(Ech**betamv))**(1/betamv)
   BetaMV[i] = betamv                            #Beta Max de Vraisemblance
   EtaMV[i] = etamv                              #Eta Max de Vraisemblance
 }
-mean(M)                                #Nombre moyen de défaillance
+mean(M)                                #Nombre moyen de dÃ©faillance
 mean(BetaMV)                                #Moyenne des Beta Max de Vraisemblance
 mean(EtaMV)                                #Moyenne des Eta Max de Vraisemblance
 sd(BetaMV)                                #Ecart-type des Beta Max de Vraisemblance
@@ -150,7 +150,7 @@ BETA[1] = 1
 ETA = rep(0,N)
 ETA[1] = 200
 
-ech = rweibull(n,beta, eta)  # génère
+ech = rweibull(n,beta, eta)  # gÃ©nÃ¨re
 ech[ech>c]=c                 # fixe plafond
 m=sum(ech<c)
 
@@ -232,7 +232,7 @@ n = 1000        #Nombre d'observations
 c = 40        #censure
 N = 50
 
-ech = rweibull(n,beta, eta)   # génère
+ech = rweibull(n,beta, eta)   # gÃ©nÃ¨re
 ech[ech>=c]=c                 # fixe plafond
 m=sum(ech<c)
 
@@ -254,7 +254,7 @@ n=25
 eta=100
 beta=0.5
 
-ech = rweibull(n,beta, eta)   # génère
+ech = rweibull(n,beta, eta)   # gÃ©nÃ¨re
 ech[ech>=c]=c                 # fixe plafond
 m=sum(ech<c)
 
