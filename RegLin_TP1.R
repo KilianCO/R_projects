@@ -1,4 +1,4 @@
-# TP1 : Regression LinÈaire
+# TP1 : Regression Lin√©aire
 
 # Exercice 1 ####
 Cholesterol=c(354,190,405,263,451,302,288,385,402,365,209,290,346,254,395)
@@ -13,32 +13,32 @@ Y=c(Cholesterol)
 nobs=length(Y)
 shapiro.test(Cholesterol)
 cor.test(Y, 1:nobs, method = "spearman")
-# p > 0.05 donc HO (dÈcorrelation des obs) non rejetÈe
-# Si Y de loi normale, dÈcorrÈlation ==> indÈpendance
+# p > 0.05 donc HO (d√©correlation des obs) non rejet√©e
+# Si Y de loi normale, d√©corr√©lation ==> ind√©pendance
 
 # Question 1
 Chol = b0 + b1 * Poids + b2 * Age + b3 * Taille + Epsilon
-# Avec Epsilon_i suivent N(0,sigma≤)
+# Avec Epsilon_i suivent N(0,sigma¬≤)
 
 # Question 2
 cholest.lm = lm(Cholesterol~Poids+Age+Taille)
 cholest.lm
 summary(cholest.lm)
-# La variance est "residual standard error" au carrÈ (ici 37.4)
+# La variance est "residual standard error" au carr√© (ici 37.4)
 
 # Question 2
 shapiro.test(residuals(cholest.lm))
-# p > 0.05 donc H0 (dÈcorrÈlation des obs) non rejetÈe
+# p > 0.05 donc H0 (d√©corr√©lation des obs) non rejet√©e
 
 
 predict(cholest.lm)
 Res_std=rstudent(cholest.lm)
 
-# Les conditions thÈoriques nÈcessaires sont satisfaites donc on peut analyser nos rÈsultats
+# Les conditions th√©oriques n√©cessaires sont satisfaites donc on peut analyser nos r√©sultats
 
-# Pour faire des tests d'hypothËses implant beta, il faut que bÈta soit gaussien
-# pour que bÈta soit gaussient il faut que les rÈsidus soient gaussiens
-# ==> Test de significativitÈ global
+# Pour faire des tests d'hypoth√®ses implant beta, il faut que b√©ta soit gaussien
+# pour que b√©ta soit gaussient il faut que les r√©sidus soient gaussiens
+# ==> Test de significativit√© global
 
 
 # Question 3
@@ -49,21 +49,21 @@ confint(cholest.lm,level=0.9) #Intervalle de confiance
 
 # Question 5
 summary(cholest.lm)
-# Pour tester le modËle, H0 est : aucune variable explicative
+# Pour tester le mod√®le, H0 est : aucune variable explicative
 # H1 est au moins une variable explicative
-# On regarde la derniËre ligne
-# On regarde la derniËre ligne : F-statistic
+# On regarde la derni√®re ligne
+# On regarde la derni√®re ligne : F-statistic
 # C'est un test de Fisher et sa p<0.05 donc on rejette HO 
-# Le modËle a un pouvoir explicatif
-# Les degrÈs de libertÈ sont 3 et 11
+# Le mod√®le a un pouvoir explicatif
+# Les degr√©s de libert√© sont 3 et 11
 
 # Question 6-7-8
 summary(cholest.lm)
-# Seul l'age a une p-valeur < 0.05 donc l'hypothËse H0 : le coeff est significativement diffÈrent
-# de 0 est donc vÈrifiÈe
+# Seul l'age a une p-valeur < 0.05 donc l'hypoth√®se H0 : le coeff est significativement diff√©rent
+# de 0 est donc v√©rifi√©e
 # C'est donc la seule variable qui influence le taux de Chol
 # Notons que si 0 est dans l'IC la variable n'est pas significative
-# Remarque : chaque b_i testÈ est effectuÈ en supposant que les autres variables SONT dans le modËle
+# Remarque : chaque b_i test√© est effectu√© en supposant que les autres variables SONT dans le mod√®le
 
 # Question 9
 cholest1=Cholesterol[abs(rstudent(cholest.lm))<2]
@@ -75,8 +75,8 @@ Y1=Cholesterol[abs(rstudent(cholest.lm))<2]
 X1=c(poids1,age1,taille1)
 nobs1=length(Y1)
 
-shapiro.test(Y1) #p>0.05 donc HO : normalitÈe des donnÈes acceptÈe
-cor.test(Y1, 1:nobs1, method = "spearman") #p>0.05 donc HO : dÈcorrÈlation acceptÈe
+shapiro.test(Y1) #p>0.05 donc HO : normalit√©e des donn√©es accept√©e
+cor.test(Y1, 1:nobs1, method = "spearman") #p>0.05 donc HO : d√©corr√©lation accept√©e
 cholest2.lm = lm(Cholesterol~Poids+Age+Taille)
 summary(cholest2.lm)
 
@@ -94,7 +94,7 @@ summary(Cholest2_lm)
 setwd("U:/Mes documents/M2/RegLin - GD")
 data=read.table("auto-mpg.data", col.names=c("mpg","cylinders","displacement","horsepower","weight",
 "acceleration","model_year","origin","car_name"),na.strings="?",stringsAsFactors = TRUE)
-# Name doit Ítre en factor pour crÈer des groupes : transformer les variables chaines de caract
+# Name doit √™tre en factor pour cr√©er des groupes : transformer les variables chaines de caract
 # En groupes
 
 
@@ -105,10 +105,10 @@ X=subset(data,select=-c(mpg, cylinders,model_year,origin, car_name))
 
 
 ml=lm(Y ~ X$displacement + X$horsepower + X$weight + X$acceleration)
-shapiro.test(residuals(ml)) #p<0.05 donc rejet de l'hypothËse de normalitÈ
+shapiro.test(residuals(ml)) #p<0.05 donc rejet de l'hypoth√®se de normalit√©
 
 
-# On va devoir corriger le jeu de donnÈes
+# On va devoir corriger le jeu de donn√©es
 hist(Y,freq=FALSE)
 Ylog=log(Y)
 
