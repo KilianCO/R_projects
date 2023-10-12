@@ -34,13 +34,13 @@ if(tail(vecB, n=1) == 0){bwins = bwins +1}
 
 
 
-# Créer une matrice
+# CrÃ©er une matrice
 x<- matrix(c(0.5,0.4,0.1,0.2,0.5,0.3,0.4,0.1,0.5), nrow = 3, ncol=3, byrow=TRUE)
 
 # Afficher
 print(x)
 
-# Matrice au carré
+# Matrice au carrÃ©
 x%*%x
 
 # Matrice puissance 5
