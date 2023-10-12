@@ -20,7 +20,7 @@ QUANT=coef(m1) #les coefs
 m2=rq(y~x, tau=0.75)
 summary(m2, se="iid")
 summary(m2)
-anova.rq(m1,m2) #compare les deux modèles
+anova.rq(m1,m2) #compare les deux modÃ¨les
 prev1=predict(m1)
 plot(y,prev1)
 sigma1=sd(y-prev1)
