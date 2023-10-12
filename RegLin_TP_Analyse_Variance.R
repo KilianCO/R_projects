@@ -1,4 +1,4 @@
-# Importation des données
+# Importation des donnÃ©es
 setwd("U:/Mes documents/M2/RegLin - GD")
 
 data = read.table('AirPullution.txt', col.names = c("NOISE","SIZE","TYPE","SIDE"))
@@ -13,21 +13,21 @@ SIDE=factor(SIDE) #Cat variable avec deux valeurs 1 et 2
 m1 = lm(NOISE ~ TYPE, contrasts=list(TYPE=contr.sum))
 summary(m1)
 #contrasts pour imposer une contrainte
-#sur la variable type, on impose que la somme soit égale à 0
+#sur la variable type, on impose que la somme soit Ã©gale Ã  0
 
 
 m1b = lm(NOISE ~ TYPE)
 summary(m1b)
 
-# Modèle statistique (m1)
+# ModÃ¨le statistique (m1)
 # Voir feuille
 
 
 # Question 2
 summary(m1)
 # On regarde la F-statistic : 1.246
-# ici sa p-value (0.2721) est supérieure à 0.05
-# donc H0 acceptée
+# ici sa p-value (0.2721) est supÃ©rieure Ã  0.05
+# donc H0 acceptÃ©e
 
 
 # Question 3
@@ -36,14 +36,14 @@ rstudent(m1)
 hist(rstudent(m1))
 
 # Question 4
-#On regarde le R²-ajusté, ici : 0.006985
+#On regarde le RÂ²-ajustÃ©, ici : 0.006985
 
 
 cat("\n ANOVA DE TYPE III \n")
 print(anova(m1,type="III")) # pour afficher le tableau d'analyse
 predict(m1)
-resid=residuals(m1) #résidus
-ri=rstudent(m1) # résidus standardisés
+resid=residuals(m1) #rÃ©sidus
+ri=rstudent(m1) # rÃ©sidus standardisÃ©s
 shapiro.test(ri)
 boxplot(ri)
 
@@ -64,7 +64,7 @@ print(summary(m2))
 resid=residuals(m2)
 shapiro.test(resid)
 
-#On enlève les outliers
+#On enlÃ¨ve les outliers
 n2=NOISE[abs(rstandard(m2))<2]
 t2=TYPE[abs(rstandard(m2))<2]
 s2=SIZE[abs(rstandard(m2))<2]
@@ -75,12 +75,12 @@ shapiro.test(resid2) #la p-value est plus petite que sur m2 donc on garde m2
 
 # Question 6
 # On regarde les p-value dans summary(m2)
-# ici p-value = 10^-16 donc H0 rejetée donc m2 significatif
+# ici p-value = 10^-16 donc H0 rejetÃ©e donc m2 significatif
 
 # Question 7
 library(car) #pour ensuite utiliser la fonction Anova
-print(Anova(m2,type="III")) #pour tester chaque variable du modèle
-print(anova(m2)) #seulement dans le cas de données équilibrées
+print(Anova(m2,type="III")) #pour tester chaque variable du modÃ¨le
+print(anova(m2)) #seulement dans le cas de donnÃ©es Ã©quilibrÃ©es
 resid=residuals(m2)
 shapiro.test(resid)
 
@@ -90,6 +90,6 @@ print(summary(m2))
 # ==> Octel fait moins de bruit
 
 # Question 9
-# On regarde le R2 ajusté : 0.8987
+# On regarde le R2 ajustÃ© : 0.8987
 
 # Question 10
