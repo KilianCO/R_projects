@@ -17,19 +17,19 @@ par(mfrow=c(2,2))
 plot(modele)
 par(mfrow=c(1,1))
 
-#normalité ?
+#normalitÃ© ?
 
 shapiro.test(modele$residuals)
 
-#pvalue > 0.05 donc on ne rejette pas l'hypothèse de normalité
+#pvalue > 0.05 donc on ne rejette pas l'hypothÃ¨se de normalitÃ©
 
-mean(modele$residuals) #On a bien residus centrée
+mean(modele$residuals) #On a bien residus centrÃ©e
 
-#indépendance ?
+#indÃ©pendance ?
 
 nobs = c(1:length(Age))
 cor.test(data$Cholesterol,nobs,method = "spearman")
-#On ne rejette pas H0 donc les Yi ne sont pas correlées
+#On ne rejette pas H0 donc les Yi ne sont pas correlÃ©es
 
 #Question 2
 
@@ -53,7 +53,7 @@ F_stat = resume$fstatistic
 #Question 6,7,8
 
 #Seul le coeff Age est significatif au risque de 5%
-#Quand on augmente l'age de un an, on augmente en moyenne le taux de cholesterol de 4.7523 unité
+#Quand on augmente l'age de un an, on augmente en moyenne le taux de cholesterol de 4.7523 unitÃ©
 
 #Question 9 (on enleve celle qui a la pvalue la plus eleve donc celle qui influe le moins)
 
@@ -69,11 +69,11 @@ resume_final_a = summary(modele_final_a)
 resume_final_a
 
 
-#pvalue > 0.05 donc on ne rejette pas l'hypothèse de normalité
+#pvalue > 0.05 donc on ne rejette pas l'hypothÃ¨se de normalitÃ©
 
-mean(modele_final$residuals) #On a bien residus centrée
+mean(modele_final$residuals) #On a bien residus centrÃ©e
 
-#indépendance ?
+#indÃ©pendance ?
 
 nobs = c(1:length(Age))
 cor.test(data$Cholesterol,nobs,method = "spearman")
@@ -107,11 +107,11 @@ mdl_car = lm(mpg~.,data=auto_final)
 resume_car = summary(mdl_car)
 resume_car
 
-#normalité ?
+#normalitÃ© ?
 
 shapiro.test(mdl_car$residuals)
 
-#pvalue > 0.05 donc on rejette l'hypothèse de normalité
+#pvalue > 0.05 donc on rejette l'hypothÃ¨se de normalitÃ©
 
 boxplot(mdl_car$residuals)
 
@@ -126,16 +126,16 @@ par(mfrow=c(1,1))
 
 
 shapiro.test(mdl_car_log$residuals)
-#Donc on rejette pas H0 au risque 1% donc on ne rejette pas l'hypothese de normalité au risque 1%
+#Donc on rejette pas H0 au risque 1% donc on ne rejette pas l'hypothese de normalitÃ© au risque 1%
 
 
-mean(resume_final_log$residuals) #On a bien residus centrée (tres proche de 0)
+mean(resume_final_log$residuals) #On a bien residus centrÃ©e (tres proche de 0)
 
-#indépendance ?
+#indÃ©pendance ?
 
 nobs = c(1:length(auto_final$horsepower))
 cor.test(log(auto_final$mpg),nobs,method = "spearman")
-#On n'a pas indep. Mais on va faire ici comme is c'était indep.
+#On n'a pas indep. Mais on va faire ici comme is c'Ã©tait indep.
 #On verra dans la suite que on fait la regression et on traite les residus comme une serie chronologique
 
 resume_final_log
@@ -170,7 +170,7 @@ donnee = data.frame(Y,X1,X2,X3)
 
 model = lm(Y ~ X1, data = donnee)
 
-shapiro.test(model$residuals) #ok pour normalité
+shapiro.test(model$residuals) #ok pour normalitÃ©
 nobs = c(1:length(X1))
 cor.test(donnee$Y,nobs,method = "spearman") #Ok pour independance
 
@@ -183,13 +183,13 @@ par(mfrow=c(1,1))
 
 #model globalement significatif au risque 5%
 #Salaire significatif au risque 5%
-#Quand on augmente le salaire d'une unité, on augmente en moyenne l'épargne du ménage de 0.24401 unité
+#Quand on augmente le salaire d'une unitÃ©, on augmente en moyenne l'Ã©pargne du mÃ©nage de 0.24401 unitÃ©
 
 #Question 2
 
 model2 = lm(Y ~ X1+X2+X3, data = donnee)
 
-shapiro.test(model2$residuals) #ok pour normalité
+shapiro.test(model2$residuals) #ok pour normalitÃ©
 nobs = c(1:length(X1))
 cor.test(donnee$Y,nobs,method = "spearman") #Ok pour independance
 
@@ -202,13 +202,13 @@ par(mfrow=c(1,1))
 
 #model globalement significatif au risque 5%
 #Salaire et nombre d'enfant significatif au risque 5%
-#loyer mensuel pas significatif au risque 5% => on l'enlève
+#loyer mensuel pas significatif au risque 5% => on l'enlÃ¨ve
 
 donne_sansloyer = donnee[,-c(4)]
 
 model3 = lm(Y ~ X1+X2, data = donne_sansloyer)
 
-shapiro.test(model3$residuals) #ok pour normalité
+shapiro.test(model3$residuals) #ok pour normalitÃ©
 nobs = c(1:length(X1))
 cor.test(donne_sansloyer$Y,nobs,method = "spearman") #Ok pour independance
 
@@ -221,8 +221,8 @@ par(mfrow=c(1,1))
 
 #model globalement significatif au risque 5%
 #Salaire et nombre d'enfant significatif au risque 5%
-#Quand on augmente le salaire d'une unité, on augmente en moyenne l'épargne du ménage de 0.3210 unité
-#Quand on augmente le nb d'enfants d'une unité, on diminue en moyenne l'épargne du ménage de 99.3304 unité
+#Quand on augmente le salaire d'une unitÃ©, on augmente en moyenne l'Ã©pargne du mÃ©nage de 0.3210 unitÃ©
+#Quand on augmente le nb d'enfants d'une unitÃ©, on diminue en moyenne l'Ã©pargne du mÃ©nage de 99.3304 unitÃ©
 # Exercice 4 ####
 
 temp <- read.table("U:/Mes documents/reg grande dimension/US Temperatures Datafile.txt",header = TRUE)
@@ -231,7 +231,7 @@ temp_data = data.frame(temp)
 model_temp = lm(JanTemp~Lat+Long,data = temp_data)
 summary(model_temp)
 
-shapiro.test(model_temp$residuals) #ok pour normalité
+shapiro.test(model_temp$residuals) #ok pour normalitÃ©
 nobs = c(1:length(temp_data$JanTemp))
 cor.test(temp_data$JanTemp,nobs,method = "spearman") #Ok pour independance
 
@@ -244,5 +244,5 @@ par(mfrow=c(1,1))
 
 #Le modele est globalement significatif au risque 5%
 #Les coeffs sont significatif au risque 5%
-#Lorsqu'on augmente la latitude d'une unité, on diminue en moyenne la temp de 2.16355 unité
-#Lorsqu'on augmente la longitude d'une unité, on augmente en moyenne la temp de 0.13396 unité
+#Lorsqu'on augmente la latitude d'une unitÃ©, on diminue en moyenne la temp de 2.16355 unitÃ©
+#Lorsqu'on augmente la longitude d'une unitÃ©, on augmente en moyenne la temp de 0.13396 unitÃ©
